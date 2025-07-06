@@ -73,7 +73,7 @@ const AIChatWidget = () => {
   }, [messages]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-12 right-6 z-50 flex flex-col items-end">
       {/* Chat Window */}
       <div
         className={`w-64 bg-white rounded-xl shadow-lg flex flex-col overflow-hidden transition-all duration-300 ease-in-out
