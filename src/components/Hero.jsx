@@ -92,7 +92,7 @@ const Hero = () => {
         </button>
 
         <a
-          href="/https://eljaycabellon.vercel.app/EljayCabellon.pdf"
+          href="https://eljaycabellon.vercel.app/EljayCabellon.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className='bg-gradient-to-r from-pink-500 to-yellow-500 text-white px-6 py-2 rounded-full font-semibold tracking-wide shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:shadow-pink-500/50 cursor-pointer'
