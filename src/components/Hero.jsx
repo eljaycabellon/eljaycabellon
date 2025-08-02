@@ -92,7 +92,7 @@ const Hero = () => {
         </button>
 
         <a
-          href="/EljayCabellon.pdf"
+          href="/EljayCabellon.pdf#zoom=80"
           target="_blank"
           rel="noopener noreferrer"
           className='bg-gradient-to-r from-pink-500 to-yellow-500 text-white px-6 py-2 rounded-full font-semibold tracking-wide shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:shadow-pink-500/50 cursor-pointer'
