@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // ✅ Import Link
 
 const services = [
   { id: 1, title: 'Web Design', description: 'Creating visually simple and user-friendly portfolio designs.' },
   { id: 2, title: 'Editing Videos', description: 'Editing videos for a vlog, presentation, and more.' },
-  { id: 3, title: 'Resume & Interview Guides', description: '' }, // Description moved to Purchase page
+  { id: 3, title: 'Resume & Interview Guides', description: '' },
   { id: 4, title: 'Editing Photos', description: 'Can edit high-quality photos with creative designs and specifications.' },
   { id: 5, title: 'Dota2 Accounts, Boosting & Items', description: 'Selling Dota2 accounts at low prices, MMR boosting, and item deals.' },
   { id: 6, title: 'Generate Facebook Auto-Likes', description: 'Can generate Facebook likes — even up to unlimited likes.' },
@@ -28,35 +29,29 @@ const Services = () => {
               data-aos-delay={index * 100}
               data-aos-duration="1000"
             >
-              {/* Service number */}
               <div className="absolute top-3 right-4 text-base md:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-400">
                 {service.id}
               </div>
 
-              {/* Service title */}
               <h3 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-4">
                 {service.title}
               </h3>
 
-              {/* Resume & PDF purchase buttons */}
               {service.id === 3 ? (
                 <div className="flex flex-col gap-3">
-                  <a
-                    href="/purchase"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  {/* ✅ Use Link for internal route */}
+                  <Link
+                    to="/purchase"
                     className="bg-green-400 text-black text-center py-2 rounded-md text-sm md:text-base font-semibold hover:bg-green-500 transition"
                   >
                     Purchase Interview Guides PDF
-                  </a>
-                  <a
-                    href="/purchase"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  </Link>
+                  <Link
+                    to="/purchase"
                     className="bg-green-400 text-black text-center py-2 rounded-md text-sm md:text-base font-semibold hover:bg-green-500 transition"
                   >
                     Purchase Resume Template / Customization
-                  </a>
+                  </Link>
                 </div>
               ) : (
                 <p className="mt-1 text-gray-300 text-sm md:text-base leading-relaxed">
@@ -64,7 +59,6 @@ const Services = () => {
                 </p>
               )}
 
-              {/* Hire Me link for other services */}
               {service.id !== 3 && (
                 <a
                   href="#contact"
