@@ -1,3 +1,162 @@
+
+
+import React, { useRef } from 'react';
+import { FaPhone, FaMapMarkedAlt, FaEnvelope } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
+import { toast, Toaster } from 'react-hot-toast';
+
+const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'eljay_cabellon',
+      'template_eljaycabellon',
+      form.current,
+      'JpvHmmKq9nYycrCy5'
+    ).then(() => {
+      toast.success('Message delivered successfully. I’ll get back to you shortly.', {
+        duration: 6000,
+        style: {
+          background: '#1e1e1e',
+          color: '#ffffff',
+          border: '1px solid #4ade80',
+          padding: '16px 28px',
+          fontSize: '16px',
+        },
+        iconTheme: {
+          primary: '#4ade80',
+          secondary: '#1e1e1e',
+        },
+      });
+      form.current.reset();
+    }).catch(() => {
+      toast.error('❌ Failed to send message. Please try again later.', {
+        duration: 6000,
+      });
+    });
+  };
+
+  return (
+    <section className="relative bg-black text-white pt-16 md:pt-20 pb-24 md:pb-32">
+      {/* Toast Container */}
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            zIndex: 9999,
+          },
+        }}
+      />
+
+      <span id="contact" className="absolute -top-24" aria-hidden="true" />
+
+      <div
+        className="container mx-auto px-6 md:px-12 lg:px-20"
+        data-aos="zoom-in-up"
+        data-aos-duration="2000"
+      >
+        <h2
+          className="text-5xl md:text-6xl font-bold text-center mb-16"
+          data-aos="flip-left"
+          data-aos-duration="1000"
+        >
+          Contact
+        </h2>
+
+        <div className="flex flex-col md:flex-row items-start md:items-center md:space-x-16 gap-12">
+          {/* Contact Info */}
+          <div
+            className="flex-1"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
+            <h3 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-6">
+              Let's Talk
+            </h3>
+            <p className="text-lg md:text-xl text-gray-300">
+              I'm open to discussing web development projects or partnership opportunities.
+            </p>
+
+            <div className="mt-10 space-y-6 text-lg md:text-xl">
+              <div>
+                <FaEnvelope className="inline-block text-green-400 mr-3 text-xl" />
+                <a href="mailto:eljaywalker448@gmail.com" className="hover:underline">
+                  eljaywalker448@gmail.com
+                </a>
+              </div>
+              <div>
+                <FaPhone className="inline-block text-green-400 mr-3 text-xl" />
+                <span>+639938945585</span>
+              </div>
+              <div>
+                <FaMapMarkedAlt className="inline-block text-green-400 mr-3 text-xl" />
+                <span>Basak Pardo, Cebu City, Cebu Philippines</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div
+            className="flex-1 w-full"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block mb-3 text-lg md:text-xl font-semibold">Your Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full p-3 md:p-4 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400 text-lg"
+                  placeholder="Enter Your Name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block mb-3 text-lg md:text-xl font-semibold">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full p-3 md:p-4 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400 text-lg"
+                  placeholder="Enter Your Email"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block mb-3 text-lg md:text-xl font-semibold">Message</label>
+                <textarea
+                  name="message"
+                  required
+                  className="w-full p-3 md:p-4 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400 text-lg"
+                  rows="6"
+                  placeholder="Enter Your Message"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-green-400 to-blue-500 text-white inline-block px-10 md:px-12 py-3 md:py-4 rounded-full font-semibold tracking-wide shadow-lg transform transition duration-300 ease-in-out hover:scale-110 hover:shadow-[0_0_18px_#22d3ee] cursor-pointer text-lg md:text-xl"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
+
+
+
+/*
 import React, { useRef } from 'react';
 import { FaPhone, FaMapMarkedAlt, FaEnvelope } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
@@ -39,7 +198,7 @@ const Contact = () => {
 
   return (
     <section className="relative bg-black text-white pt-0 pb-20">
-      {/* Toast Container (Centered) */}
+      
       <Toaster
         position="top-center"
         toastOptions={{
@@ -65,7 +224,7 @@ const Contact = () => {
         </h2>
 
         <div className="flex flex-col md:flex-row items-center md:space-x-12">
-          {/* Contact Info */}
+         
           <div
             className="flex-1 mb-10 md:mb-0"
             data-aos="fade-right"
@@ -96,7 +255,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Form */}
+          
           <div
             className="flex-1 w-full"
             data-aos="fade-left"
@@ -151,6 +310,9 @@ const Contact = () => {
 };
 
 export default Contact;
+
+*/
+
 /*
 import React from 'react'
 import { FaPhone, FaMapMarkedAlt, FaEnvelope } from 'react-icons/fa';

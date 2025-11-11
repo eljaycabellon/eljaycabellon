@@ -1,3 +1,92 @@
+
+
+import React from 'react';
+import Photo1 from '../assets/thumbnail1.jpg';
+import Photo2 from '../assets/thumbnail2.jpg';
+import Photo3 from '../assets/thumbnail3.png';
+import Photo4 from '../assets/thumbnail4.jpg';
+
+const projects = [
+  {
+    id: 1,
+    name: "Calyx Residences",
+    technologies: "at Ayala Business Park, Cebu",
+    image: Photo3,
+    github: "https://www.youtube.com/watch?v=e2bWVVtLhFA&t=0s",
+  },
+  {
+    id: 2,
+    name: "Stefan Beach",
+    technologies: "at San Remigio, Cebu",
+    image: Photo2,
+    github: "https://www.youtube.com/watch?v=MLeaiCmi1iI&t=0s",
+  },
+  {
+    id: 3,
+    name: "Pag-Utlan Camp",
+    technologies: "at Olango Island, Lapu-Lapu",
+    image: Photo1,
+    github: "https://www.youtube.com/watch?v=5eoLubmuCEo&t=0s",
+  },
+  {
+    id: 4,
+    name: "Grand Residences",
+    technologies: "near IT Park and Ayala, Cebu",
+    image: Photo4, // placeholder
+    github: "https://www.youtube.com/watch?v=Y6RCX9HmNo8=0s",
+  },
+];
+
+const Projects = () => {
+  return (
+    <section className="relative bg-black text-white py-20">
+      <span id="projects" className="absolute -top-16" aria-hidden="true" />
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        <h2
+          className="text-5xl md:text-6xl font-bold text-center mb-12"
+          data-aos="fade-up"
+        >
+          My Vlogs
+        </h2>
+
+        {/* Grid for single row on large screens */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+              className="bg-gray-800 p-6 md:p-8 rounded-xl hover:shadow-[0_0_16px_#d1d5db] transition-transform duration-300 hover:scale-105 flex flex-col w-full max-w-xs"
+            >
+              <img
+                src={project.image}
+                alt={project.name}
+                className="rounded-lg mb-4 w-full h-60 md:h-72 object-cover"
+              />
+              <h3 className="text-2xl md:text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                {project.name}
+              </h3>
+              <p className="text-base md:text-lg text-gray-400 mb-4">{project.technologies}</p>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-gradient-to-r from-red-400 to-pink-500 text-white px-5 py-3 rounded-full font-semibold tracking-wide shadow-md transition duration-300 ease-in-out hover:scale-110 hover:shadow-pink-500/50 text-center"
+              >
+                Watch Now!
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
+
+/*
 import React from 'react';
 import Photo1 from '../assets/thumbnail1.jpg';
 import Photo2 from '../assets/thumbnail2.jpg';
@@ -30,7 +119,7 @@ const projects = [
 const Projects = () => {
   return (
     <section className="relative bg-black text-white py-16">
-      {/* Scroll anchor remains untouched */}
+      
       <span id="projects" className="absolute -top-16" aria-hidden="true" />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -77,7 +166,7 @@ const Projects = () => {
 };
 
 export default Projects;
-
+*/
 /*
 import React from 'react'
 import Photo1 from '../assets/thumbnail1.jpg'

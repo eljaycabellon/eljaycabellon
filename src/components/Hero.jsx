@@ -1,5 +1,114 @@
 
+import React, { useEffect, useState, useRef } from 'react';
+import HeroImage from '../assets/hero-image.png';
 
+const Hero = () => {
+  const texts = [
+    "I craft smart-looking, dumb-working web stuff.",
+    "I build colorful but useless interfaces.",
+    "I create slow-loading but shiny apps."
+  ];
+
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+  const [blink, setBlink] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const heroRef = useRef(null);
+
+  // Typing effect
+  useEffect(() => {
+    if (subIndex === texts[index].length + 1 && !deleting) {
+      setTimeout(() => setDeleting(true), 1000);
+      return;
+    }
+
+    if (subIndex === 0 && deleting) {
+      setDeleting(false);
+      setIndex((prev) => (prev + 1) % texts.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => (deleting ? prev - 1 : prev + 1));
+    }, deleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, deleting, texts]);
+
+  // Cursor blink
+  useEffect(() => {
+    const blinkInterval = setInterval(() => {
+      setBlink((prev) => !prev);
+    }, 500);
+    return () => clearInterval(blinkInterval);
+  }, []);
+
+  // Scroll animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={heroRef}
+      className={`min-h-screen bg-black text-white flex flex-col items-center justify-center text-center px-6 md:px-12 transition-all duration-2000 ease-out transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+    >
+      <img
+        src={HeroImage}
+        alt="Avatar"
+        className='mx-auto mb-10 w-56 h-56 sm:w-64 sm:h-64 rounded-full object-cover transition-transform duration-500 hover:scale-110 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
+      />
+
+      <h1 className='text-5xl sm:text-6xl font-extrabold leading-tight'>
+        I'm{" "}
+        <span className='animated-gradient-text'>Eljay Cabellon</span>
+        , Newbie Dumbsite Developer
+      </h1>
+
+      <p className='mt-6 text-xl sm:text-2xl text-gray-300 font-mono max-w-2xl mx-auto leading-relaxed'>
+        {texts[index].substring(0, subIndex)}
+        <span className='ml-1'>{blink ? '|' : ' '}</span>
+      </p>
+
+      <div className='mt-10 flex flex-wrap justify-center gap-5'>
+        {/* Contact Button */}
+        <button
+          onClick={() =>
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })
+          }
+          className='bg-gradient-to-r from-pink-500 to-yellow-500 text-white px-8 py-3 rounded-full font-semibold tracking-wide shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:shadow-pink-500/50 cursor-pointer'
+        >
+          Contact With Me
+        </button>
+
+        {/* Resume Button (Same hover style) */}
+        <a
+          href="/EljayCabellon.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className='bg-gradient-to-r from-pink-500 to-yellow-500 text-white px-8 py-3 rounded-full font-semibold tracking-wide shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:shadow-pink-500/50 cursor-pointer'
+        >
+          Resume
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
+
+/*
 import React, { useEffect, useState, useRef } from 'react';
 import HeroImage from '../assets/hero-image.png';
 
@@ -105,7 +214,7 @@ const Hero = () => {
 };
 
 export default Hero;
-
+*/
 /* 06292025
 import React, { useEffect, useState, useRef } from 'react';
 import HeroImage from '../assets/hero-image.png';

@@ -1,3 +1,87 @@
+
+
+import React, { useState } from "react";
+import EljayLogo from "../assets/Final_Logo_TransparentBG.png";
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const scrollToTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setMenuOpen(false);
+  };
+
+  return (
+    <nav className="sticky top-0 z-50 bg-black text-white shadow-md" id="home">
+      <div className="max-w-5xl mx-auto relative flex items-start justify-center px-4 md:px-6 py-5"> {/* Increased py from 4 → 5 */}
+
+        {/* Logo */}
+        <div className="absolute left-4 top-2 md:left-6 md:top-2 hidden md:block">
+          <a href="#home" onClick={scrollToTop}>
+            <img
+              src={EljayLogo}
+              alt="Eljay Logo"
+              className="w-16 h-16 md:w-18 md:h-18 object-contain transition-transform duration-300 hover:scale-110 cursor-pointer" // Slightly larger logo
+            />
+          </a>
+        </div>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex space-x-10 mt-3"> {/* Increased spacing and margin-top */}
+          <a href="#home" onClick={scrollToTop} className="hover:text-gray-400 transition-transform duration-300 hover:scale-110 text-lg md:text-xl">Home</a>
+          <a href="#about" className="hover:text-gray-400 transition-transform duration-300 hover:scale-110 text-lg md:text-xl">About Me</a>
+          <a href="#services" className="hover:text-gray-400 transition-transform duration-300 hover:scale-110 text-lg md:text-xl">Services</a>
+          <a href="#projects" className="hover:text-gray-400 transition-transform duration-300 hover:scale-110 text-lg md:text-xl">Projects</a>
+          <a href="#contact" className="hover:text-gray-400 transition-transform duration-300 hover:scale-110 text-lg md:text-xl">Contact</a>
+        </div>
+
+        {/* Desktop Button */}
+        <div className="absolute right-4 top-2 md:right-6 md:top-2 hidden md:flex">
+          <a href="#contact" className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-5 py-3 rounded-full text-lg md:text-xl transition-transform duration-300 transform hover:scale-110 hover:shadow-lg shadow-blue-400">
+            Connect Me
+          </a>
+        </div>
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden absolute top-2 right-4">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="focus:outline-none" aria-label="Toggle menu">
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"> {/* Slightly larger hamburger */}
+              {menuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden flex flex-col items-center space-y-5 pb-5 pt-3 bg-black"> {/* Increased spacing & padding */}
+          <img
+            src={EljayLogo}
+            alt="Eljay Logo"
+            className="w-18 h-18 object-contain transition-transform duration-300 hover:scale-110" // Larger logo
+          />
+          <a href="#home" onClick={scrollToTop} className="hover:text-gray-400 text-lg">Home</a>
+          <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-gray-400 text-lg">About Me</a>
+          <a href="#services" onClick={() => setMenuOpen(false)} className="hover:text-gray-400 text-lg">Services</a>
+          <a href="#projects" onClick={() => setMenuOpen(false)} className="hover:text-gray-400 text-lg">Projects</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)} className="hover:text-gray-400 text-lg">Contact</a>
+          <a href="#contact" className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-5 py-3 rounded-full text-lg transition-transform duration-300 transform hover:scale-110 hover:shadow-lg shadow-blue-400">
+            Connect Me
+          </a>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
+
+/*
 import React, { useState } from "react";
 import EljayLogo from "../assets/Final_Logo_TransparentBG.png";
 
@@ -14,7 +98,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-black text-white shadow-md" id="home">
       <div className="max-w-5xl mx-auto relative flex items-start justify-center px-4 md:px-6 py-4">
 
-        {/* ✅ Logo (shown only on desktop) */}
+        
         <div className="absolute left-4 top-2 md:left-6 md:top-2 hidden md:block">
           <a href="#home" onClick={scrollToTop}>
             <img
@@ -25,7 +109,7 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* ✅ Desktop Links */}
+        
         <div className="hidden md:flex space-x-8 mt-2">
           <a href="#home" onClick={scrollToTop} className="hover:text-gray-400 transition-transform duration-300 hover:scale-110">Home</a>
           <a href="#about" className="hover:text-gray-400 transition-transform duration-300 hover:scale-110">About Me</a>
@@ -34,14 +118,14 @@ const Navbar = () => {
           <a href="#contact" className="hover:text-gray-400 transition-transform duration-300 hover:scale-110">Contact</a>
         </div>
 
-        {/* ✅ Desktop Button */}
+        
         <div className="absolute right-4 top-2 md:right-6 md:top-2 hidden md:flex">
           <a href="#contact" className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full transition-transform duration-300 transform hover:scale-110 hover:shadow-lg shadow-blue-400">
             Connect Me
           </a>
         </div>
 
-        {/* ✅ Mobile Hamburger Only */}
+        
         <div className="md:hidden absolute top-1 right-4">
           <button onClick={() => setMenuOpen(!menuOpen)} className="focus:outline-none" aria-label="Toggle menu">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,10 +139,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* ✅ Mobile Dropdown Menu */}
+      
       {menuOpen && (
         <div className="md:hidden flex flex-col items-center space-y-4 pb-4 pt-2 bg-black">
-          {/* ✅ Show Logo Inside Dropdown */}
+          
           <img
             src={EljayLogo}
             alt="Eljay Logo"
@@ -80,7 +164,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
+*/
 /*
 import React, { useState } from "react";
 import EljayLogo from "../assets/Final_Logo_TransparentBG.png";

@@ -1,6 +1,92 @@
 import React from 'react';
 
 const services = [
+  { id: 1, title: 'Web Design', description: 'Creating visually simple and user-friendly portfolio designs.' },
+  { id: 2, title: 'Editing Videos', description: 'Editing videos for a vlog, presentation, and more.' },
+  { id: 3, title: 'Resume & Interview Guides', description: '' }, // Description moved to Purchase page
+  { id: 4, title: 'Editing Photos', description: 'Can edit high-quality photos with creative designs and specifications.' },
+  { id: 5, title: 'Dota2 Accounts, Boosting & Items', description: 'Selling Dota2 accounts at low prices, MMR boosting, and item deals.' },
+  { id: 6, title: 'Generate Facebook Auto-Likes', description: 'Can generate Facebook likes — even up to unlimited likes.' },
+];
+
+const Services = () => {
+  return (
+    <div className="relative bg-black text-white py-16">
+      <span id="services" className="absolute -top-28" />
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-20" data-aos="fade-up" data-aos-duration="2000">
+        <h2 className="text-5xl md:text-6xl font-bold text-center mb-12" data-aos="fade-down" data-aos-duration="1000">
+          Services
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={service.id}
+              className="relative bg-gray-800 px-6 py-6 md:py-8 rounded-xl hover:shadow-[0_0_16px_#d1d5db] transition-transform duration-300 hover:scale-105 flex flex-col justify-between min-h-[240px]"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+              data-aos-duration="1000"
+            >
+              {/* Service number */}
+              <div className="absolute top-3 right-4 text-base md:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-400">
+                {service.id}
+              </div>
+
+              {/* Service title */}
+              <h3 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-4">
+                {service.title}
+              </h3>
+
+              {/* Resume & PDF purchase buttons */}
+              {service.id === 3 ? (
+                <div className="flex flex-col gap-3">
+                  <a
+                    href="/purchase"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-400 text-black text-center py-2 rounded-md text-sm md:text-base font-semibold hover:bg-green-500 transition"
+                  >
+                    Purchase Interview Guides PDF
+                  </a>
+                  <a
+                    href="/purchase"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-400 text-black text-center py-2 rounded-md text-sm md:text-base font-semibold hover:bg-green-500 transition"
+                  >
+                    Purchase Resume Template / Customization
+                  </a>
+                </div>
+              ) : (
+                <p className="mt-1 text-gray-300 text-sm md:text-base leading-relaxed">
+                  {service.description}
+                </p>
+              )}
+
+              {/* Hire Me link for other services */}
+              {service.id !== 3 && (
+                <a
+                  href="#contact"
+                  className="mt-4 text-green-400 hover:text-blue-500 text-sm md:text-base self-start font-semibold"
+                >
+                  Hire Me
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Services;
+
+/*
+import React from 'react';
+
+const services = [
   {
     id: 1,
     title: 'Web Design',
@@ -36,7 +122,7 @@ const services = [
 const Services = () => {
   return (
     <div className="relative bg-black text-white py-10">
-      {/* Invisible anchor for scroll alignment */}
+    
       <span id="services" className="absolute -top-24" />
 
       <div
@@ -90,7 +176,7 @@ const Services = () => {
 
 export default Services;
 
-
+*/
 
 
 /* NORMAL CODE
